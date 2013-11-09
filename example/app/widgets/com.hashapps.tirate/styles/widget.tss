@@ -1,0 +1,31 @@
+"#starContainer":{
+	layout:'horizontal',
+	width:Ti.UI.SIZE,
+	height:Ti.UI.SIZE,
+},
+
+"#star1":{
+    image: '/images/stars_large/full.png',
+	right:1,
+	index:1,
+},
+"#star2":{
+	 image: '/images/stars_large/full.png',
+	right:1,
+	index:2,
+},
+"#star3":{
+	 image: '/images/stars_large/full.png',
+	right:1,
+	index:3,
+},
+"#star4":{
+	 image: '/images/stars_large/full.png',
+	right:1,
+	index:4,
+},
+"#star5":{
+	 image: '/stars_large/full.png',
+	right:1,
+	index:5,
+},

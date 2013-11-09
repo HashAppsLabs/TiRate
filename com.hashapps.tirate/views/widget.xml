@@ -1,0 +1,9 @@
+<Alloy>
+	<View id="starContainer">
+		<ImageView id="star1" onClick="starClicked"/>
+		<ImageView id="star2" onClick="starClicked"/>
+		<ImageView id="star3" onClick="starClicked"/>
+		<ImageView id="star4" onClick="starClicked"/>
+		<ImageView id="star5" onClick="starClicked"/>
+	</View>
+</Alloy>
