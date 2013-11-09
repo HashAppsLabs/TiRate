@@ -1,6 +1,6 @@
 <Alloy>
 	<Window class="container" layout="vertical">
 		<Widget src="com.hashapps.tirate" rate="1" top="100"/>
-		<Widget src="com.hashapps.tirate" rate="3.5" clickable="true" top="50"/>
+		<Widget src="com.hashapps.tirate" rate="3.5" clickable="true" top="50" onRate="alertRate"/>
 	</Window>
 </Alloy>

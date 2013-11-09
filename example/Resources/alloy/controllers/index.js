@@ -1,4 +1,7 @@
 function Controller() {
+    function alertRate(e) {
+        alert(e);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -6,6 +9,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.index = Ti.UI.createWindow({
         backgroundColor: "white",
         layout: "vertical",
@@ -27,9 +31,11 @@ function Controller() {
         __parentSymbol: $.__views.index
     });
     $.__views.__alloyId2.setParent($.__views.index);
+    alertRate ? $.__views.__alloyId2.on("rate", alertRate) : __defers["$.__views.__alloyId2!rate!alertRate"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.index.open();
+    __defers["$.__views.__alloyId2!rate!alertRate"] && $.__views.__alloyId2.on("rate", alertRate);
     _.extend($, exports);
 }
 

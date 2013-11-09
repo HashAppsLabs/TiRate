@@ -7,7 +7,8 @@ function WPATH(s) {
 function Controller() {
     function setRate(value) {
         Ti.API.info("rate value = " + value);
-        $.val = parseInt(value, 10);
+        rate_value = parseInt(value, 10);
+        $.trigger("rate", rate_value);
         var star, last, i = 1;
         for (i; 5 >= i; i++) {
             star = $["star" + i];
@@ -85,7 +86,7 @@ function Controller() {
     starClicked ? $.__views.star5.addEventListener("click", starClicked) : __defers["$.__views.star5!click!starClicked"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var args = arguments[0] || {};
+    var args = arguments[0] || {}, rate_value = 0;
     var full, half, empty;
     $.clickable = args.clickable ? args.clickable : false;
     if ($.clickable) {
@@ -104,13 +105,22 @@ function Controller() {
     $.star1.image = $.star2.image = $.star3.image = $.star4.image = $.star5.image = empty;
     _.extend($.starContainer, args);
     args.rate && setRate(args.rate);
-    $.star1.addEventListener("error", function(e) {
-        Ti.API.error("error loading " + e.image);
+    Object.defineProperty($, "rate", {
+        get: function() {
+            return rate_value;
+        },
+        set: function(val) {
+            setRate(val);
+        }
     });
-    exports.setVisible = function(visible) {
-        $.starContainer.visible = visible;
-    };
-    exports.setRate = setRate;
+    Object.defineProperty($, "visible", {
+        get: function() {
+            return $.starContainer.visible;
+        },
+        set: function(val) {
+            $.starContainer.visible = val;
+        }
+    });
     __defers["$.__views.star1!click!starClicked"] && $.__views.star1.addEventListener("click", starClicked);
     __defers["$.__views.star2!click!starClicked"] && $.__views.star2.addEventListener("click", starClicked);
     __defers["$.__views.star3!click!starClicked"] && $.__views.star3.addEventListener("click", starClicked);

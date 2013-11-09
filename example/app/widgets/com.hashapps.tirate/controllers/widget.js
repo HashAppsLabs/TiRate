@@ -1,4 +1,5 @@
-var args = arguments[0] || {};
+var args = arguments[0] || {}
+	,rate_value=0;
 
 var full, half, empty;
 
@@ -31,13 +32,10 @@ if (args.rate){
 	setRate(args.rate);
 }
 
-$.star1.addEventListener('error', function(e){
-    Ti.API.error( 'error loading ' + e.image);
-});
-
 function setRate(value){
     Ti.API.info('rate value = ' + value);
-	$.val = parseInt(value, 10);
+	rate_value = parseInt(value, 10);
+	$.trigger('rate',rate_value);
 	var i = 1, star , last;
 	for(i; i<=5; i++){
 		star= $['star'+(i)];
@@ -68,9 +66,21 @@ function starClicked(e){
 	}
 }
 
-exports.setVisible = function(visible){
-    $.starContainer.visible = visible;
-};
+Object.defineProperty($, "rate", {
+	get: function(){
+		return rate_value;
+	},
+	set: function(val){
+		setRate(val);
+	}
+});
 
-exports.setRate = setRate;
+Object.defineProperty($, "visible", {
+	get: function(){
+		return $.starContainer.visible;
+	},
+	set: function(val){
+		$.starContainer.visible = val;
+	}
+});
 
